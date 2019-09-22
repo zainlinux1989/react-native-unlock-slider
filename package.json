@@ -1,0 +1,16 @@
+{
+  "name": "react-native-unlock-slider",
+  "version": "1.0.0",
+  "description": "Unlock sliding button with slider thumb and background styling.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "slider",
+    "unlock button",
+    "button"
+  ],
+  "author": "Zain Arshad",
+  "license": "ISC"
+}

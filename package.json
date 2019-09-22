@@ -1,6 +1,6 @@
 {
   "name": "react-native-unlock-slider",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Unlock sliding button with slider thumb and background styling.",
   "main": "src/index.js",
   "scripts": {
@@ -12,5 +12,18 @@
     "button"
   ],
   "author": "Zain Arshad",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  },
+  "devDependencies": {
+    "react": "^16.6.3",
+    "react-native": "^0.58.4",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "metro-react-native-babel-preset": "^0.51.1",
+    "react-test-renderer": "^16.6.3"
+  },
+  "homepage": "https://github.com/zainlinux1989/react-native-unlock-slider"
 }

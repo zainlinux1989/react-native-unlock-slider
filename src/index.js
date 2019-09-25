@@ -30,15 +30,31 @@ export default class Slider extends Component {
             },
             onPanResponderMove: (evt, gestureState) => {
                 const margin = this.totalWidth - this.state.squareWidth * 1.025;
-                if(gestureState.dx <= 0){
-                    this.setState({ offsetX: new Animated.Value(gestureState.dx) , childOpacity: 1-(gestureState.dx/margin)});
+                if(this.props.isLeftToRight === true){
+                    if (gestureState.dx <= 0){
+                        this.setState({ offsetX: new Animated.Value(gestureState.dx) , childOpacity: 1-(gestureState.dx/margin)});
+                    }
+                    else if (gestureState.dx > 0 && gestureState.dx <= margin) {
+                        this.setState({ offsetX: new Animated.Value(gestureState.dx) , childOpacity: 1-(gestureState.dx/margin)});
+                    }
+                    else if (gestureState.dx > margin) {
+                        this.setState({childOpacity: 0});
+                        this.onEndReached();
+                        return;
+                    }
                 }
-                else if (gestureState.dx > 0 && gestureState.dx <= margin) {
-                    this.setState({ offsetX: new Animated.Value(gestureState.dx) , childOpacity: 1-(gestureState.dx/margin)});
-                } else if (gestureState.dx > margin) {
-                    this.setState({childOpacity: 0});
-                    this.onEndReached();
-                    return;
+                else{
+                    if(gestureState.dx < -margin){
+                        this.setState({childOpacity: 0});
+                        this.onEndReached();
+                        return;
+                    }
+                    else if (gestureState.dx > -margin && gestureState.dx < 0) {
+                        this.setState({ offsetX: new Animated.Value(-gestureState.dx) , childOpacity: 1-(-gestureState.dx/margin)});
+                    }
+                    else if (gestureState.dx <= 0) {
+                        this.setState({ offsetX: new Animated.Value(-gestureState.dx) , childOpacity: 1-(-gestureState.dx/margin)});
+                    }
                 }
             },
             onPanResponderTerminationRequest: (evt, gestureState) => true,
@@ -67,7 +83,7 @@ export default class Slider extends Component {
                 onLayout={event => {
                     this.totalWidth = event.nativeEvent.layout.width;
                 }}
-                style={[this.props.containerStyle, { alignItems: 'flex-start' }]}
+                style={[this.props.containerStyle, { alignItems: this.props.isLeftToRight === true ? 'flex-start' : 'flex-end' }]}
             >
                 <Animated.View
                     onLayout={event => {
@@ -90,7 +106,7 @@ export default class Slider extends Component {
 
                 <View
                     style={[
-                        { alignSelf: 'flex-start', position: 'absolute', width: this.state.offsetX._value, height: 100},
+                        { alignSelf: this.props.isLeftToRight === true ? 'flex-start' : 'flex-end', position: 'absolute', width: this.state.offsetX._value, height: 100},
                         this.props.slideOverStyle
                     ]}
                 >
@@ -101,6 +117,7 @@ export default class Slider extends Component {
 }
 
 Slider.propTypes = {
+    isLeftToRight: PropTypes.bool,
     childrenContainer: PropTypes.object,
     containerStyle: PropTypes.object,
     slideOverStyle: PropTypes.object,
@@ -110,6 +127,7 @@ Slider.propTypes = {
 };
 
 Slider.defaultProps = {
+    isLeftToRight: true,
     childrenContainer: {},
     containerStyle: {},
     slideOverStyle: {backgroundColor: 'rgba(255,255,255,0.0)', borderBottomRightRadius: 0, borderTopRightRadius: 0},

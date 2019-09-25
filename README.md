@@ -22,8 +22,9 @@ const App = () => {
   return (
     <View>
         <Slider
+            isLeftToRight={true} // set false to move slider Right to Left
             childrenContainer={{ backgroundColor: 'rgba(255,255,255,0.0)'}}
-            slideOverStyle={{backgroundColor: 'yellow', borderBottomRightRadius: 5, borderTopRightRadius: 5}}
+            slideOverStyle={{backgroundColor: 'yellow',borderBottomLeftRadius:5, borderBottomRightRadius: 5, borderTopLeftRadius: 5, borderTopRightRadius: 5 }}
             onEndReached={() => {
               Alert.alert('Attention', 'Unlocked!');
             }}
@@ -71,6 +72,8 @@ slideOverStyle        | Object   | Yes      | {backgroundColor: 'rgba(255,255,25
 isOpacityChangeOnSlide          | Bool   | Yes      | false                       | Reduce opacity of child component while sliding.
 thumbElement                  | Element   | Yes      | <View style={{ width: 50, height: 50, backgroundColor: 'green' }} />                         | Slider thumb view, add any other view
 onEndReached | Function   | Yes      | () => {}                | Callback function call when slider reached to end
+isLeftToRight | Bool   | Yes      | true                | If isLeftToRight = false then slider move Right to Left direction, by default move left to right.
+
 ---
 
 Extend existing library.

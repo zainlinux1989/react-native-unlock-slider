@@ -130,9 +130,9 @@ Slider.defaultProps = {
     isLeftToRight: true,
     childrenContainer: {},
     containerStyle: {},
-    slideOverStyle: {backgroundColor: 'rgba(255,255,255,0.0)', borderBottomRightRadius: 0, borderTopRightRadius: 0},
+    slideOverStyle: {backgroundColor: 'rgba(255,255,255,0.0)', borderBottomLeftRadius:0, borderBottomRightRadius: 0, borderTopLeftRadius: 0, borderTopRightRadius: 0 },
     isOpacityChangeOnSlide: false,
     thumbElement: <View style={{ width: 50, height: 50, backgroundColor: 'green' }} />,
     onEndReached: () => {},
 };
- 
+

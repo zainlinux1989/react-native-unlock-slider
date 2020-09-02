@@ -73,7 +73,7 @@ export default class Slider extends Component {
     };
 
     resetBar() {
-        Animated.timing(this.state.offsetX, { toValue: 0 }).start();
+        Animated.timing(this.state.offsetX, { toValue: 0, useNativeDriver: true }).start();
         this.setState({childOpacity: 1, offsetX: new Animated.Value(0)})
     }
 
@@ -135,4 +135,3 @@ Slider.defaultProps = {
     thumbElement: <View style={{ width: 50, height: 50, backgroundColor: 'green' }} />,
     onEndReached: () => {},
 };
-
